@@ -1,5 +1,5 @@
 %define name pavuk
-%define version 0.9.34
+%define version 0.9.35
 %define release %mkrel 1
 
 Summary: Pavuk WWW grabber
@@ -10,7 +10,7 @@ License: GPL
 Group: Networking/WWW
 Source: %name-%version.tar.bz2
 BuildRoot: %_tmppath/%name-buildroot
-URL: http://www.idata.sk/~ondrej/pavuk/
+URL: http://pavuk.sourceforge.net/
 
 %description
 WWW graber used to mirror files located on HTTP, HTTPS, FTP, Gopher servers.
