@@ -2,15 +2,16 @@
 %define version 0.9.35
 %define release %mkrel 1
 
-Summary: Pavuk WWW grabber
-Name: %name
-Version: %version
-Release: %release
-License: GPL
-Group: Networking/WWW
-Source: %name-%version.tar.bz2
-BuildRoot: %_tmppath/%name-buildroot
-URL: http://pavuk.sourceforge.net/
+Summary:	Pavuk WWW grabber
+Name:		%name
+Version:	%version
+Release:	%release
+License:	GPL
+Group:		Networking/WWW
+Source:		%name-%version.tar.bz2
+BuildRoot:	%_tmppath/%name-buildroot
+BuildRequires:	gtk2-devel
+URL:		http://pavuk.sourceforge.net/
 
 %description
 WWW graber used to mirror files located on HTTP, HTTPS, FTP, Gopher servers.
@@ -30,20 +31,20 @@ rm -rf $RPM_BUILD_ROOT
 
 make DESTDIR=$RPM_BUILD_ROOT install
 
-
-(cd $RPM_BUILD_ROOT
-mkdir -p ./usr/lib/menu
-cat > ./usr/lib/menu/%{name} <<EOF
-?package(%{name}):\
-command="/usr/bin/pavuk -X"\
-title="Pavuk"\
-longtitle="WWW file grabber"\
-needs="x11"\
-icon="www_section.png"\
-section="Internet/Other"
+%{__mkdir} -p %{buildroot}%{_datadir}/applications
+cat > %{buildroot}%{_datadir}/applications/mandriva-%{name}.desktop <<EOF
+[Desktop Entry]
+Encoding=UTF-8
+Name=%{name}
+Comment="WWW file grabber"
+Exec=%{_bindir}/%{name} -X
+Icon=%{name}
+Terminal=false
+Type=Application
+StartupNotify=true
+Categories=X-MandrivaLinux-Internet-FileTransfer;
 EOF
-)
- 
+
 %find_lang %name
  
 %post
@@ -63,6 +64,4 @@ rm -rf $RPM_BUILD_ROOT
 %_bindir/*
 %_datadir/icons/*.xpm
 %_mandir/man1/*
-#%_datadir/pixmaps/*.xpm
-%_menudir/*
-#%_datadir/gnome/apps/Internet/pavuk.desktop
+%{_datadir}/applications/mandriva-%{name}.desktop
