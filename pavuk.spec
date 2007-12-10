@@ -1,14 +1,15 @@
 %define name pavuk
 %define version 0.9.35
-%define release %mkrel 1
+%define release %mkrel 2
 
 Summary:	Pavuk WWW grabber
 Name:		%name
 Version:	%version
 Release:	%release
-License:	GPL
+License:	GPLv2+
 Group:		Networking/WWW
-Source:		%name-%version.tar.bz2
+Source:		http://nchc.dl.sourceforge.net/sourceforge/pavuk/%name-%version.tar.bz2
+Patch0:		pavuk-0.9.35-fix-desktop-file.patch
 BuildRoot:	%_tmppath/%name-buildroot
 BuildRequires:	gtk2-devel
 URL:		http://pavuk.sourceforge.net/
@@ -18,31 +19,17 @@ WWW graber used to mirror files located on HTTP, HTTPS, FTP, Gopher servers.
 
 %prep
 rm -rf $RPM_BUILD_ROOT
-
-%setup
+%setup -q
+%patch0 -p0
 
 %build
-
 %configure --with-x
-
 %make
 
 %install
+%makeinstall_std
 
-make DESTDIR=$RPM_BUILD_ROOT install
-
-%{__mkdir} -p %{buildroot}%{_datadir}/applications
-cat > %{buildroot}%{_datadir}/applications/mandriva-%{name}.desktop <<EOF
-[Desktop Entry]
-Name=%{name}
-Comment="WWW file grabber"
-Exec=%{_bindir}/%{name} -X
-Icon=%{name}
-Terminal=false
-Type=Application
-StartupNotify=true
-Categories=X-MandrivaLinux-Internet-FileTransfer;
-EOF
+install -D pavuk.desktop %buildroot/%_datadir/applications/%{name}.desktop
 
 %find_lang %name
  
@@ -55,12 +42,11 @@ EOF
 %clean
 rm -rf $RPM_BUILD_ROOT
 
-
 %files -f %name.lang
 %defattr(-,root,root)
-%doc AUTHORS COPYING ChangeLog NEWS README INSTALL BUGS TODO CREDITS 
-%doc pavukrc.sample pavuk_authinfo.sample pavuk.spec pavuk.desktop MAILINGLIST wget-pavuk.HOWTO button_icons/
+%doc AUTHORS COPYING ChangeLog NEWS README BUGS TODO CREDITS 
+%doc pavukrc.sample pavuk_authinfo.sample MAILINGLIST wget-pavuk.HOWTO button_icons/
 %_bindir/*
 %_datadir/icons/*.xpm
 %_mandir/man1/*
-%{_datadir}/applications/mandriva-%{name}.desktop
+%{_datadir}/applications/%{name}.desktop
