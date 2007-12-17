@@ -10,7 +10,6 @@ License:	GPLv2+
 Group:		Networking/WWW
 Source:		http://nchc.dl.sourceforge.net/sourceforge/pavuk/%name-%version.tar.bz2
 Patch0:		pavuk-0.9.35-fix-desktop-file.patch
-BuildRoot:	%_tmppath/%name-buildroot
 BuildRequires:	gtk2-devel
 URL:		http://pavuk.sourceforge.net/
 
