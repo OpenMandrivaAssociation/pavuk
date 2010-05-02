@@ -1,6 +1,6 @@
 %define name pavuk
 %define version 0.9.35
-%define release %mkrel 5
+%define release %mkrel 6
 
 Summary:	Pavuk WWW grabber
 Name:		%name
@@ -10,26 +10,32 @@ License:	GPLv2+
 Group:		Networking/WWW
 Source:		http://nchc.dl.sourceforge.net/sourceforge/pavuk/%name-%version.tar.bz2
 Patch0:		pavuk-0.9.35-fix-desktop-file.patch
+Patch1:		pavuk-0.9.34-gcc43.patch
 BuildRoot:	%_tmppath/%name-buildroot
 BuildRequires:	gtk2-devel
+BuildRequires:	openssl-devel
+BuildRequires:	libx11-devel
+BuildRequires:	libxmu-devel
+BuildRequires:	zlib-devel
 URL:		http://pavuk.sourceforge.net/
 
 %description
 WWW graber used to mirror files located on HTTP, HTTPS, FTP, Gopher servers.
 
 %prep
-rm -rf $RPM_BUILD_ROOT
 %setup -q
 %patch0 -p0
+%patch1 -p0
 
 %build
-%configure --with-x
+%configure2_5x --with-x
 %make
 
 %install
+rm -rf $RPM_BUILD_ROOT
 %makeinstall_std
 
-install -D pavuk.desktop %buildroot/%_datadir/applications/%{name}.desktop
+install -m 644 -D pavuk.desktop %buildroot/%_datadir/applications/%{name}.desktop
 
 %find_lang %name
  
