@@ -1,0 +1,18 @@
+--- pavuk.desktop.orig	2007-12-10 12:23:30.000000000 +0800
++++ pavuk.desktop	2007-12-10 12:23:14.000000000 +0800
+@@ -1,13 +1,8 @@
+ [Desktop Entry]
+ Name=Pavuk
+-Name[sk]=Pavúk
+-Name[cs]=Pavúk
+ Comment=Recursive World Wide Web mirroring tool for HTTP, HTTPS, FTP and Gopher protocols
+-Comment[sk]=Nástroj na rekurzívne kopírovanie dokumentov z WWW cez protokoly HTTP, HTTPS, FTP, FTPS a Gopher
+-Comment[cs]=Nástroj na rekurzivní kopírování dokumentù z WWW pomocí protokolù HTTP, HTTPS, FTP, FTPS a Gopher
+-Comment[de]=Rekursives WWW-Speicherprogramm für die Protokolle HTTP, HTTPS, FTP und Gopher
+ Exec=pavuk -X
+ Icon=pavuk
+-Terminal=0
++Terminal=false
+ Type=Application
+-Categories=Network;FileTransfer
++Categories=Network;FileTransfer;
