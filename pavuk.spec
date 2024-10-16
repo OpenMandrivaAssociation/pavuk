@@ -17,7 +17,7 @@ BuildRequires:	openssl-devel
 BuildRequires:	libx11-devel
 BuildRequires:	libxmu-devel
 BuildRequires:	zlib-devel
-URL:		http://pavuk.sourceforge.net/
+URL:		https://pavuk.sourceforge.net/
 
 %description
 WWW graber used to mirror files located on HTTP, HTTPS, FTP, Gopher servers.
