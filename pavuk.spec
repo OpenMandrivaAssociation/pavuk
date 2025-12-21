@@ -12,6 +12,11 @@ Source:		http://nchc.dl.sourceforge.net/sourceforge/pavuk/%name-%version.tar.bz2
 Patch0:		pavuk-0.9.35-fix-desktop-file.patch
 Patch1:		pavuk-0.9.34-gcc43.patch
 BuildRoot:	%_tmppath/%name-buildroot
+BuildRequires:	autoconf
+BuildRequires:	automake
+BuildRequires:	libtool-base
+BuildRequires:	slibtool
+BuildRequires:	make
 BuildRequires:	gtk2-devel
 BuildRequires:	openssl-devel
 BuildRequires:	libx11-devel
