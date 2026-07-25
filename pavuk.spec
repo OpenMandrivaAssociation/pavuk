@@ -1,6 +1,6 @@
 %define name pavuk
 %define version 0.9.35
-%define release %mkrel 7
+%define release 8
 
 Summary:	Pavuk WWW grabber
 Name:		%name
